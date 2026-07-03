@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/topGradientBg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/top_gradient_background"
+        app:layout_constraintHeight_percent="0.38"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav">
+
+        <!-- Back -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_back"
+            android:background="@drawable/circle_button_dark"
+            android:padding="8dp"
+            android:contentDescription="Quay lại"/>
+
+        <!-- Tên bác sĩ -->
+        <TextView
+            android:id="@+id/tvDoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Label chọn ngày -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chọn ngày khám"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="20dp"/>
+
+        <!-- Hàng ngang chọn ngày -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:overScrollMode="never"/>
+
+        <!-- Label chọn giờ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chọn giờ khám"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="20dp"/>
+
+        <!-- Danh sách time slot -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTimeSlots"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="12dp"
+            android:overScrollMode="never"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        app:labelVisibilityMode="labeled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_nav_background"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/white"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemActiveIndicatorStyle="@style/CustomIndicator"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

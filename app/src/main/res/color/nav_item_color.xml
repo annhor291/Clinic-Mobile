@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Khi tab được chọn (Active) -> Ép Icon lên màu trắng tinh (#FFFFFF) -->
+    <item android:state_checked="true" android:color="#FFFFFF" />
+    <item android:state_selected="true" android:color="#FFFFFF" />
+    <item android:state_activated="true" android:color="#FFFFFF" />
+
+    <!-- Khi tab bình thường (Không active) -> Giữ màu trắng tinh luôn -->
+    <item android:color="#FFFFFF" />
+</selector>

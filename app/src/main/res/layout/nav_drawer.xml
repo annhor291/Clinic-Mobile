@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <!-- Header drawer -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/top_gradient_background"
+        android:padding="24dp">
+
+        <!-- Avatar có viền -->
+        <FrameLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                app:cardCornerRadius="36dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#BDBDBD">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_avatar_placeholder"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Avatar"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/circle_avatar_border"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvDrawerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Nguyễn Văn A"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvDrawerEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="user@gmail.com"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+    <!-- Menu items -->
+    <TextView
+        android:id="@+id/menuProfile"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:text="Thông tin cá nhân"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        android:background="?attr/selectableItemBackground"/>
+
+    <TextView
+        android:id="@+id/menuChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:text="Đổi mật khẩu"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        android:background="?attr/selectableItemBackground"/>
+
+    <TextView
+        android:id="@+id/menuHistory"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:text="Lịch sử đặt khám"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        android:background="?attr/selectableItemBackground"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="8dp"
+        android:background="@color/primary_light"/>
+
+    <TextView
+        android:id="@+id/menuLogout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:text="Đăng xuất"
+        android:textColor="#E53935"
+        android:textSize="15sp"
+        android:background="?attr/selectableItemBackground"/>
+
+</LinearLayout>

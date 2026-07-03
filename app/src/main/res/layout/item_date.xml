@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dateContainer"
+    android:layout_width="52dp"
+    android:layout_height="72dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginHorizontal="4dp"
+    android:background="@drawable/date_item_background">
+
+    <TextView
+        android:id="@+id/tvDayOfWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        android:textColor="@color/text_secondary"/>
+
+    <TextView
+        android:id="@+id/tvDayOfMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"/>
+
+</LinearLayout>

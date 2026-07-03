@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/top_gradient_background"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Tên app kiểu thương hiệu -->
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/logo_clinic"
+            android:scaleType="fitCenter"
+            android:contentDescription="Clinic Logo"/>
+
+        <!-- Tagline -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Giải pháp tiếp cận y tế thông minh"
+            android:textSize="15sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"/>
+
+        <!-- Email -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:hint="Email"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeColor="@color/primary"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:padding="14dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Password -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Mật khẩu"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeColor="@color/primary"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/text_secondary"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="14dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Nút đăng nhập -->
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="24dp"
+            android:text="Đăng nhập"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/primary"/>
+
+        <!-- Đăng ký -->
+        <TextView
+            android:id="@+id/tvRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:text="Bạn chưa có tài khoản? Đăng ký"
+            android:textStyle="bold"
+            android:textColor="@color/primary_dark"
+            android:textSize="14sp"/>
+
+        <!-- Quên mật khẩu — cách xa hơn -->
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:text="Quên mật khẩu?"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <!-- Divider -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/primary_light"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:text="Hoặc đăng nhập bằng tài khoản"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/primary_light"/>
+
+        </LinearLayout>
+
+        <!-- Social buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Google -->
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnGoogle"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_logo_google"
+                        android:contentDescription="Google"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circle_social_border"/>
+
+            </FrameLayout>
+
+            <!-- Facebook -->
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnFacebook"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="#1877F2">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_logo_facebook"
+                        android:contentDescription="Facebook"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circle_social_border"/>
+
+            </FrameLayout>
+
+            <!-- Zalo -->
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnZalo"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_logo_zalo"
+                        android:contentDescription="Zalo"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circle_social_border"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.ClinicMobile"
+        parent="Theme.Material3.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/primary</item>
+
+        <item name="android:windowBackground">@color/white</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+
+    </style>
+
+    <style name="Theme.ClinicMobile"
+        parent="Base.Theme.ClinicMobile" />
+    <style name="CustomIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#000000</item>
+    </style>
+
+    <style name="RoundedDialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowBackground">@drawable/rounded_dialog_background</item>
+        <item name="android:windowMinWidthMajor">85%</item>
+        <item name="android:windowMinWidthMinor">85%</item>
+    </style>
+</resources>
+
+
