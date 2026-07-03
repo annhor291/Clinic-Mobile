@@ -4,32 +4,29 @@ public class PatientCreateRequest {
 
     private String fullName;
     private String phone;
-    private String dob;
     private String gender;
+    private String dateOfBirth;
     private String address;
-    private String cccd;
-    private String bhyt;
     private String bloodType;
+    private String insuranceNumber;
 
-    public PatientCreateRequest(String fullName, String phone, String dob,
-                                String gender, String address, String cccd,
-                                String bhyt, String bloodType) {
+    public PatientCreateRequest(String fullName, String phone, String gender,
+                                String dateOfBirth, String address,
+                                String bloodType, String insuranceNumber) {
         this.fullName = fullName;
         this.phone = phone;
-        this.dob = dob;
         this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
         this.address = address;
-        this.cccd = cccd;
-        this.bhyt = bhyt;
         this.bloodType = bloodType;
+        this.insuranceNumber = insuranceNumber;
     }
 
     public String getFullName() { return fullName; }
     public String getPhone() { return phone; }
-    public String getDob() { return dob; }
     public String getGender() { return gender; }
+    public String getDateOfBirth() { return dateOfBirth; }
     public String getAddress() { return address; }
-    public String getCccd() { return cccd; }
-    public String getBhyt() { return bhyt; }
     public String getBloodType() { return bloodType; }
+    public String getInsuranceNumber() { return insuranceNumber; }
 }

@@ -30,6 +30,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
+    // ===== AUTH =====
     @POST("auth/login")
     Call<ApiResponse<AuthResponse>> login(
             @Body LoginRequest request);
@@ -54,6 +55,7 @@ public interface ApiService {
     Call<ApiResponse<Void>> logout(
             @Body RefreshTokenRequest request);
 
+    // ===== PATIENT =====
     @GET("patients/me")
     Call<ApiResponse<PatientResponse>> getMyProfile();
 
@@ -67,22 +69,37 @@ public interface ApiService {
             @Path("id") Long patientId,
             @Body PatientCreateRequest request);
 
-    @GET("specialties")
+    // ===== SPECIALTIES =====
+    // Dùng /all để lấy toàn bộ list không phân trang
+    @GET("specialties/all")
     Call<ApiResponse<List<SpecialtyResponse>>> getSpecialties();
 
+    // ===== DOCTORS =====
+    // Trả về PageResponse, filter theo specialtyId
     @GET("doctors")
-    Call<ApiResponse<List<DoctorResponse>>> getDoctorsBySpecialty(
-            @Query("specialtyId") Long specialtyId);
+    Call<ApiResponse<PageResponse<DoctorResponse>>> getDoctorsBySpecialty(
+            @Query("specialtyId") Long specialtyId,
+            @Query("page") int page,
+            @Query("size") int size);
 
     @GET("doctors/{id}")
     Call<ApiResponse<DoctorResponse>> getDoctorById(
             @Path("id") Long id);
 
-    @GET("timeslots")
+    // ===== TIMESLOTS =====
+    // Path là time-slots, doctorId là PathVariable
+    @GET("time-slots/doctor/{doctorId}")
     Call<ApiResponse<List<TimeSlotResponse>>> getTimeSlots(
-            @Query("doctorId") Long doctorId,
+            @Path("doctorId") Long doctorId,
             @Query("date") String date);
 
+    // Chỉ lấy slot còn trống
+    @GET("time-slots/doctor/{doctorId}/available")
+    Call<ApiResponse<List<TimeSlotResponse>>> getAvailableTimeSlots(
+            @Path("doctorId") Long doctorId,
+            @Query("date") String date);
+
+    // ===== APPOINTMENTS =====
     @POST("appointments")
     Call<ApiResponse<AppointmentResponse>> createAppointment(
             @Body AppointmentRequest request);

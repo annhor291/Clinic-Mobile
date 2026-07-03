@@ -9,20 +9,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clinicmobile.R;
+import com.example.clinicmobile.dto.response.SpecialtyResponse;
 import com.example.clinicmobile.model.Specialty;
 
 import java.util.List;
 
 public class SpecialtyAdapter extends RecyclerView.Adapter<SpecialtyAdapter.SpecialtyViewHolder> {
 
-    private List<Specialty> specialties;
+    private List<SpecialtyResponse> specialties;
     private OnSpecialtyClickListener listener;
 
     public interface OnSpecialtyClickListener {
-        void onSpecialtyClick(Specialty specialty);
+        void onSpecialtyClick(SpecialtyResponse specialty);
     }
 
-    public SpecialtyAdapter(List<Specialty> specialties, OnSpecialtyClickListener listener) {
+    public SpecialtyAdapter(List<SpecialtyResponse> specialties,
+                            OnSpecialtyClickListener listener) {
         this.specialties = specialties;
         this.listener = listener;
     }
@@ -37,17 +39,30 @@ public class SpecialtyAdapter extends RecyclerView.Adapter<SpecialtyAdapter.Spec
 
     @Override
     public void onBindViewHolder(@NonNull SpecialtyViewHolder holder, int position) {
-        Specialty specialty = specialties.get(position);
-        holder.tvIcon.setText(specialty.getIcon());
+        SpecialtyResponse specialty = specialties.get(position);
         holder.tvName.setText(specialty.getName());
-        holder.tvDescription.setText(specialty.getDescription());
+        holder.tvDescription.setText(specialty.getDescription() != null
+                ? specialty.getDescription() : "");
+
+        // Hiện số bác sĩ nếu có
+        if (specialty.getTotalDoctors() != null && specialty.getTotalDoctors() > 0) {
+            holder.tvIcon.setText("🏥");
+            holder.tvDescription.setText(
+                    (specialty.getDescription() != null ? specialty.getDescription() : "")
+                            + "\n" + specialty.getTotalDoctors() + " bác sĩ");
+        } else {
+            holder.tvIcon.setText("🏥");
+        }
+
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) listener.onSpecialtyClick(specialty);
         });
     }
 
     @Override
-    public int getItemCount() { return specialties.size(); }
+    public int getItemCount() {
+        return specialties != null ? specialties.size() : 0;
+    }
 
     static class SpecialtyViewHolder extends RecyclerView.ViewHolder {
         TextView tvIcon, tvName, tvDescription;

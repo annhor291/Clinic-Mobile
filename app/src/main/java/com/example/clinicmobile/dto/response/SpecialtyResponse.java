@@ -5,10 +5,13 @@ public class SpecialtyResponse {
     private Long id;
     private String name;
     private String description;
-    private String icon;
+    private boolean active;
+    private Integer totalDoctors;
+    private String createdAt;
 
     public Long getId() { return id; }
     public String getName() { return name; }
     public String getDescription() { return description; }
-    public String getIcon() { return icon; }
+    public boolean isActive() { return active; }
+    public Integer getTotalDoctors() { return totalDoctors; }
 }
