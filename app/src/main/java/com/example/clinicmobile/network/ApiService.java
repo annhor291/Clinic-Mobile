@@ -78,7 +78,7 @@ public interface ApiService {
     // Trả về PageResponse, filter theo specialtyId
     @GET("doctors")
     Call<ApiResponse<PageResponse<DoctorResponse>>> getDoctorsBySpecialty(
-            @Query("specialtyId") Long specialtyId,
+            @Query("specialtyId") Long specialtyId,  // null = lấy tất cả
             @Query("page") int page,
             @Query("size") int size);
 

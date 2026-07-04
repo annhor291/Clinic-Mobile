@@ -31,6 +31,8 @@
 
         <activity android:name=".activities.EditProfileActivity" android:exported="false"/>
 
+        <activity android:name=".activities.SearchActivity" android:exported="false"/>
+
         <activity android:name=".activities.ProfileActivity"/>
 
         <activity android:name=".activities.AppointmentHistoryActivity"/>

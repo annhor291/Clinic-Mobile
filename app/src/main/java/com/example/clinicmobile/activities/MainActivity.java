@@ -3,6 +3,7 @@ package com.example.clinicmobile.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         loadFunctions();
         setupDoctorRecyclerView();
         setupFunctionRecyclerView();
+        setupSearch();
 
         btnLogout.setOnClickListener(v -> handleLogout());
 
@@ -98,6 +100,15 @@ public class MainActivity extends AppCompatActivity {
         btnOpenDrawer.setOnClickListener(v ->
                 drawerLayout.openDrawer(GravityCompat.START));
 
+        // Thêm 2 dòng này — hiển thị tên/email từ token
+        TextView tvDrawerName = findViewById(R.id.tvDrawerName);
+        TextView tvDrawerEmail = findViewById(R.id.tvDrawerEmail);
+        tvDrawerName.setText(TokenManager.getUserName(this) != null
+                && !TokenManager.getUserName(this).isEmpty()
+                ? TokenManager.getUserName(this) : "Người dùng");
+        tvDrawerEmail.setText(TokenManager.getUserEmail(this) != null
+                ? TokenManager.getUserEmail(this) : "");
+
         findViewById(R.id.menuProfile).setOnClickListener(v -> {
             drawerLayout.closeDrawer(GravityCompat.START);
             startActivity(new Intent(this, ProfileActivity.class));
@@ -116,6 +127,24 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.menuLogout).setOnClickListener(v -> {
             drawerLayout.closeDrawer(GravityCompat.START);
             handleLogout();
+        });
+    }
+
+    private void setupSearch() {
+        EditText etSearch = findViewById(R.id.etSearch);
+        etSearch.setOnEditorActionListener((v, actionId, event) -> {
+            String keyword = etSearch.getText().toString().trim();
+            if (!keyword.isEmpty()) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("keyword", keyword);
+                startActivity(intent);
+            }
+            return true;
+        });
+
+        // Bấm vào ô search cũng mở SearchActivity
+        etSearch.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, SearchActivity.class));
         });
     }
 
