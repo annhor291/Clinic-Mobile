@@ -9,20 +9,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clinicmobile.R;
+import com.example.clinicmobile.dto.response.DoctorResponse;
 import com.example.clinicmobile.model.Doctor;
 
 import java.util.List;
 
 public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.DoctorListViewHolder>{
 
-    private List<Doctor> doctors;
+    private List<DoctorResponse> doctors;
     private OnDoctorClickListener listener;
 
     public interface OnDoctorClickListener {
-        void onDoctorClick(Doctor doctor);
+        void onDoctorClick(DoctorResponse doctor);
     }
 
-    public DoctorListAdapter(List<Doctor> doctors, OnDoctorClickListener listener) {
+    public DoctorListAdapter(List<DoctorResponse> doctors, OnDoctorClickListener listener) {
         this.doctors = doctors;
         this.listener = listener;
     }
@@ -37,18 +38,35 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Do
 
     @Override
     public void onBindViewHolder(@NonNull DoctorListViewHolder holder, int position) {
-        Doctor doctor = doctors.get(position);
-        holder.tvDoctorName.setText(doctor.getName());
-        holder.tvSpecialty.setText(doctor.getSpecialty());
-        holder.tvRating.setText("⭐ " + doctor.getRating());
-        holder.tvExperience.setText(doctor.getExperienceYears() + " năm kinh nghiệm");
+        DoctorResponse doctor = doctors.get(position);
+
+        holder.tvDoctorName.setText(
+                doctor.getTitle() != null
+                        ? doctor.getTitle() + " " + doctor.getFullName()
+                        : doctor.getFullName());
+
+        holder.tvSpecialty.setText(
+                doctor.getSpecialtyName() != null ? doctor.getSpecialtyName() : "");
+
+        holder.tvRating.setText("⭐ Phí khám: "
+                + (doctor.getConsultationFee() != null
+                ? String.format("%,.0f đ", doctor.getConsultationFee())
+                : "Liên hệ"));
+
+        holder.tvExperience.setText(
+                doctor.getExperienceYears() != null
+                        ? doctor.getExperienceYears() + " năm kinh nghiệm"
+                        : "");
+
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) listener.onDoctorClick(doctor);
         });
     }
 
     @Override
-    public int getItemCount() { return doctors.size(); }
+    public int getItemCount() {
+        return doctors != null ? doctors.size() : 0;
+    }
 
     static class DoctorListViewHolder extends RecyclerView.ViewHolder {
         TextView tvDoctorName, tvSpecialty, tvRating, tvExperience;

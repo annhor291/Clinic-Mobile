@@ -38,7 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText etFullName, etEmail, etPhone, etPassword, etConfirmPassword;
     private Button btnRegister;
     private TextView tvLogin;
-    private ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class RegisterActivity extends AppCompatActivity {
         initViews();
         underlineLoginText();
 
-        btnBack.setOnClickListener(v -> finish());
 
         btnRegister.setOnClickListener(v -> handleRegister());
 
@@ -66,7 +64,6 @@ public class RegisterActivity extends AppCompatActivity {
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
         btnRegister = findViewById(R.id.btnRegister);
         tvLogin = findViewById(R.id.tvLogin);
-        btnBack = findViewById(R.id.btnBack);
     }
 
     private void underlineLoginText() {
