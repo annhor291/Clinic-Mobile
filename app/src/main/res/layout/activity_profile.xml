@@ -71,26 +71,30 @@
 
             </FrameLayout>
 
+            <!-- Thêm id để ProfileActivity.java bind data -->
             <TextView
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Nguyễn Hoàng Duy An"
+                android:text=""
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tvEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="duyan@gmail.com"
+                android:text=""
                 android:textColor="#555555"/>
 
             <TextView
+                android:id="@+id/tvRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Patient"
+                android:text=""
                 android:textColor="@color/text_primary"
                 android:textSize="16sp"/>
 

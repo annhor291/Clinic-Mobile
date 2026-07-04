@@ -24,12 +24,20 @@ import androidx.activity.OnBackPressedCallback;
 import com.example.clinicmobile.R;
 import com.example.clinicmobile.adapters.DoctorAdapter;
 import com.example.clinicmobile.adapters.FunctionAdapter;
+import com.example.clinicmobile.dto.request.RefreshTokenRequest;
+import com.example.clinicmobile.dto.response.ApiResponse;
 import com.example.clinicmobile.model.Doctor;
 import com.example.clinicmobile.model.QuickFunction;
+import com.example.clinicmobile.network.ApiClient;
+import com.example.clinicmobile.utils.TokenManager;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -138,13 +146,44 @@ public class MainActivity extends AppCompatActivity {
 
         dialogView.findViewById(R.id.btnConfirmLogout).setOnClickListener(v -> {
             dialog.dismiss();
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
+            callLogoutApi();
         });
 
         dialog.show();
+    }
+
+    private void callLogoutApi() {
+        String refreshToken = TokenManager.getRefreshToken(this);
+
+        if (refreshToken == null) {
+            navigateToLogin();
+            return;
+        }
+
+        RefreshTokenRequest request = new RefreshTokenRequest(refreshToken);
+
+        ApiClient.getApiService().logout(request).enqueue(
+                new Callback<ApiResponse<Void>>() {
+
+                    @Override
+                    public void onResponse(Call<ApiResponse<Void>> call,
+                                           Response<ApiResponse<Void>> response) {
+                        navigateToLogin();
+                    }
+
+                    @Override
+                    public void onFailure(Call<ApiResponse<Void>> call, Throwable t) {
+                        navigateToLogin();
+                    }
+                });
+    }
+
+    private void navigateToLogin() {
+        TokenManager.clearAll(MainActivity.this);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void loadDummyDoctors() {
