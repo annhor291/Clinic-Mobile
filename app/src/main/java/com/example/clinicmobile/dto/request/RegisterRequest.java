@@ -2,21 +2,20 @@ package com.example.clinicmobile.dto.request;
 
 public class RegisterRequest {
 
-    private String fullName;
+    private String username;
     private String email;
-    private String phone;
     private String password;
+    private String role;
 
-    public RegisterRequest(String fullName, String email,
-                           String phone, String password) {
-        this.fullName = fullName;
+    public RegisterRequest(String username, String email, String password, String role) {
+        this.username = username;
         this.email = email;
-        this.phone = phone;
         this.password = password;
+        this.role = role;
     }
 
-    public String getFullName() { return fullName; }
+    public String getUsername() { return username; }
     public String getEmail() { return email; }
-    public String getPhone() { return phone; }
     public String getPassword() { return password; }
+    public String getRole() { return role; }
 }

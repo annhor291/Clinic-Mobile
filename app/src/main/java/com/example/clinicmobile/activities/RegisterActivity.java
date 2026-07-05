@@ -88,15 +88,19 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void handleRegister() {
-        String fullName = etFullName.getText().toString().trim();
+        String username = etFullName.getText().toString().trim(); // tạm dùng field fullName cho username
         String email = etEmail.getText().toString().trim();
-        String phone = etPhone.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-        if (fullName.isEmpty() || email.isEmpty() || phone.isEmpty()
-                || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty()
+                || confirmPassword.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (username.length() < 3) {
+            Toast.makeText(this, "Username phải có ít nhất 3 ký tự", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -118,7 +122,8 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setEnabled(false);
         btnRegister.setText("Đang đăng ký...");
 
-        RegisterRequest request = new RegisterRequest(fullName, email, phone, password);
+        // Role mặc định là PATIENT khi đăng ký từ app
+        RegisterRequest request = new RegisterRequest(username, email, password, "PATIENT");
 
         ApiClient.getApiService().register(request).enqueue(
                 new Callback<ApiResponse<AuthResponse>>() {
