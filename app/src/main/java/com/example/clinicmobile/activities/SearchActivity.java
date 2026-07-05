@@ -147,13 +147,13 @@ public class SearchActivity extends AppCompatActivity {
         rvResults.setLayoutManager(new LinearLayoutManager(this));
 
         if (currentTab == 0) {
-            // Filter chuyên khoa
-            List<SpecialtyResponse> filtered = keyword.isEmpty()
-                    ? allSpecialties
-                    : allSpecialties.stream()
-                    .filter(s -> s.getName().toLowerCase()
-                            .contains(keyword.toLowerCase()))
-                    .collect(Collectors.toList());
+            List<SpecialtyResponse> filtered = new ArrayList<>();
+            for (SpecialtyResponse s : allSpecialties) {
+                if (keyword.isEmpty() || s.getName().toLowerCase()
+                        .contains(keyword.toLowerCase())) {
+                    filtered.add(s);
+                }
+            }
 
             if (filtered.isEmpty()) {
                 tvEmpty.setVisibility(View.VISIBLE);
@@ -170,17 +170,16 @@ public class SearchActivity extends AppCompatActivity {
             }
 
         } else {
-            // Filter bác sĩ
-            List<DoctorResponse> filtered = keyword.isEmpty()
-                    ? allDoctors
-                    : allDoctors.stream()
-                    .filter(d -> (d.getFullName() != null
-                            && d.getFullName().toLowerCase()
-                            .contains(keyword.toLowerCase()))
-                            || (d.getSpecialtyName() != null
-                            && d.getSpecialtyName().toLowerCase()
-                            .contains(keyword.toLowerCase())))
-                    .collect(Collectors.toList());
+            List<DoctorResponse> filtered = new ArrayList<>();
+            for (DoctorResponse d : allDoctors) {
+                boolean nameMatch = d.getFullName() != null
+                        && d.getFullName().toLowerCase().contains(keyword.toLowerCase());
+                boolean specialtyMatch = d.getSpecialtyName() != null
+                        && d.getSpecialtyName().toLowerCase().contains(keyword.toLowerCase());
+                if (keyword.isEmpty() || nameMatch || specialtyMatch) {
+                    filtered.add(d);
+                }
+            }
 
             if (filtered.isEmpty()) {
                 tvEmpty.setVisibility(View.VISIBLE);
